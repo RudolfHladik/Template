@@ -9,3 +9,4 @@ pluginManagement {
 rootProject.name = "Template"
 include(":androidApp")
 include(":shared")
+enableFeaturePreview("VERSION_CATALOGS")

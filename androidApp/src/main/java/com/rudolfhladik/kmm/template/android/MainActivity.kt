@@ -1,20 +1,18 @@
 package com.rudolfhladik.kmm.template.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.rudolfhladik.kmm.template.Greeting
-import android.widget.TextView
-
-fun greet(): String {
-    return Greeting().greeting()
-}
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import com.rudolfhladik.kmm.template.android.ui.screens.CoinsScreen
+import com.rudolfhladik.kmm.template.appContext
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        appContext = applicationContext
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        setContent {
+            CoinsScreen()
+        }
     }
 }

@@ -3,25 +3,50 @@ plugins {
     kotlin("android")
 }
 
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-}
-
 android {
-    compileSdkVersion(30)
+    compileSdk = 30
     defaultConfig {
         applicationId = "com.rudolfhladik.kmm.template.android"
-        minSdkVersion(26)
-        targetSdkVersion(30)
+        minSdk = 26
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0"
+    }
+    val libs = project.extensions
+        .getByType<VersionCatalogsExtension>()
+        .named("libs") as org.gradle.accessors.dm.LibrariesForLibs
+
+    buildFeatures {
+        compose = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions.apply {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(libs.bundles.androidx.compose)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycleKtx)
 }

@@ -5,8 +5,13 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
-        classpath("com.android.tools.build:gradle:4.2.2")
+        val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs") as org.gradle.accessors.dm.LibrariesForLibs
+
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.android.gradlePlugin)
+        classpath(kotlin("serialization", version = libs.versions.kotlin.get()))
+        classpath(libs.sqldelight.plugin)
+
     }
 }
 

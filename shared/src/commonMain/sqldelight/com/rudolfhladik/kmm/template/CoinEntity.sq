@@ -1,0 +1,23 @@
+CREATE TABLE Coin (
+id TEXT NOT NULL,
+name TEXT NOT NULL,
+icon TEXT NOT NULL,
+symbol TEXT NOT NULL,
+price REAL NOT NULL
+);
+
+selectAll:
+SELECT * FROM Coin;
+
+selectById:
+SELECT * FROM Coin WHERE id = ?;
+
+selectByName:
+SELECT * FROM Coin WHERE name = ?;
+
+insertCoin:
+INSERT OR IGNORE INTO Coin(id, name, icon, symbol, price)
+VALUES (?,?,?,?,?);
+
+deleteAll:
+DELETE FROM Coin;
