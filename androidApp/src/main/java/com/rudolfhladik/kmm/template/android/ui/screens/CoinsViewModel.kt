@@ -16,7 +16,7 @@ class CoinsViewModel : ViewModel() {
 
     fun fetchCoins() {
         viewModelScope.launch {
-            getCoinsUseCase.getCoinsList().collect {
+            getCoinsUseCase.observeCoinsList().collect {
                 coins = it
             }
         }

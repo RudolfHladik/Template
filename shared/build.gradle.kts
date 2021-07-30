@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -14,6 +15,17 @@ sqldelight {
         packageName = "com.rudolfhladik.kmm.template.db"
     }
 }
+// Workaround for https://youtrack.jetbrains.com/issue/KT-43944
+//android {
+//    configurations {
+//        create("androidTestApi")
+//        create("androidTestDebugApi")
+//        create("androidTestReleaseApi")
+//        create("testApi")
+//        create("testDebugApi")
+//        create("testReleaseApi")
+//    }
+//}
 kotlin {
     android()
 
@@ -40,9 +52,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Coroutines
-                implementation(libs.kotlinx.coroutinesMt)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt") {
+                    isForce = true
+                }
                 // Serialization
                 implementation(libs.kotlinx.serialization)
+                implementation(libs.kotlinx.serializationJson)
                 // Ktor
                 implementation(libs.ktor.client.core)
                 // SqlDelight
@@ -79,6 +94,12 @@ kotlin {
             }
         }
         val iosTest by getting
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 

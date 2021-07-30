@@ -1,16 +1,28 @@
 import SwiftUI
 import shared
 
+@available(iOS 14.0, *)
 struct ContentView: View {
-	let greet = Greeting().greeting()
+    @StateObject private var viewModel = CoinsViewModel()
 
-	var body: some View {
-		Text(greet)
-	}
+    var body: some View {
+        List {
+            ForEach(viewModel.coins, id: \.id) { coin in
+                Text(coin.name)
+            }
+        }
+        Button(action: { refresh() }) {
+            Text("Get Coins")
+        }
+    }
+
+    func refresh() {
+        viewModel.getCoins()
+    }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-	ContentView()
-	}
-}
+//struct ContentView_Previews: PreviewProvider {
+//	static var previews: some View {
+//        ContentView()
+//	}
+//}

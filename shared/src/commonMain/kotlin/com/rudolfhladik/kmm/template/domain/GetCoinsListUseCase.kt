@@ -13,10 +13,12 @@ import kotlinx.coroutines.flow.merge
 class GetCoinsListUseCase {
     private val coinStore: CoinStore = CoinStore(RestApiManager(), DatabaseManager())
 
-    fun getCoinsList(): Flow<List<Coin>> = merge(
+    fun observeCoinsList(): Flow<List<Coin>> = merge(
         fetchCoinsAndStoreLocally(),
         coinStore.observeCoins()
     )
+
+    suspend fun getCoinsList() = coinStore.fetchCoins()
 
     private fun fetchCoinsAndStoreLocally(): Flow<List<Coin>> = flow {
         val coinsResponse = coinStore.fetchCoins()
