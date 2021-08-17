@@ -5,7 +5,7 @@ import com.rudolfhladik.kmm.template.tool.Constants
 import io.ktor.http.HttpMethod
 import kotlinx.serialization.KSerializer
 
-sealed class Endpoint<R>(
+internal sealed class Endpoint<R>(
     internal val url: String,
     internal val method: HttpMethod,
     internal val responseSerializer: KSerializer<R>? = null

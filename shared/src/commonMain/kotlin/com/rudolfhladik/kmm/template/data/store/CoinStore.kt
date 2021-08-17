@@ -8,7 +8,7 @@ import com.rudolfhladik.kmm.template.data.model.response.CoinResponse
 import com.rudolfhladik.kmm.template.data.model.response.CoinsResponse
 import kotlinx.coroutines.flow.Flow
 
-class CoinStore internal constructor(
+internal class CoinStore internal constructor(
     private val api: RestApiManager,
     private val db: DatabaseManager
 ) {

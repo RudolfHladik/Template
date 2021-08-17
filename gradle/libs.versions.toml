@@ -1,10 +1,10 @@
 [versions]
-kotlin = "1.5.20"
+kotlin = "1.5.21"
 agp = "7.0.0"
 detekt = "1.17.0"
 ktlint = "10.0.0"
-compose = "1.0.0"
-serialization = "1.2.1"
+compose = "1.0.1"
+serialization = "1.2.2"
 coroutinesMt = { strictly = "1.5.1-native-mt" }
 ktorVer = "1.6.1"
 sqlDelight = "1.5.0"

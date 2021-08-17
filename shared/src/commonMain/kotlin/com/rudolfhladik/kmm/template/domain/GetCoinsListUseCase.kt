@@ -1,27 +1,30 @@
 package com.rudolfhladik.kmm.template.domain
 
+import app.futured.arkitekt.kmusecases.freeze
+import app.futured.arkitekt.kmusecases.usecase.UseCase
 import com.rudolfhladik.kmm.template.Coin
 import com.rudolfhladik.kmm.template.data.api.RestApiManager
 import com.rudolfhladik.kmm.template.data.database.DatabaseManager
+import com.rudolfhladik.kmm.template.data.model.ListWrapper
 import com.rudolfhladik.kmm.template.data.store.CoinStore
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.merge
 
-@OptIn(ExperimentalCoroutinesApi::class)
-class GetCoinsListUseCase {
+class GetCoinsListUseCase : UseCase<Unit, ListWrapper<Coin>>() {
     private val coinStore: CoinStore = CoinStore(RestApiManager(), DatabaseManager())
 
-    fun observeCoinsList(): Flow<List<Coin>> = merge(
-        fetchCoinsAndStoreLocally(),
-        coinStore.observeCoins()
-    )
+    init {
+        freeze()
+    }
 
-    suspend fun getCoinsList() = coinStore.fetchCoins()
-
-    private fun fetchCoinsAndStoreLocally(): Flow<List<Coin>> = flow {
-        val coinsResponse = coinStore.fetchCoins()
-        coinStore.storeCoins(coinsResponse.coins)
+    override suspend fun build(arg: Unit): ListWrapper<Coin> {
+        val list = coinStore.fetchCoins().coins.map {
+            Coin(
+                it.id,
+                it.name,
+                it.icon,
+                it.symbol,
+                it.price
+            )
+        }
+        return ListWrapper(list)
     }
 }

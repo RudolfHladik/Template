@@ -10,19 +10,26 @@ import Foundation
 import shared
 
 @available(iOS 14.0, *)
-class CoinsViewModel : ObservableObject {
-    @Published var coins = [CoinResponse]()
+class CoinsViewModel : BaseViewModel, ObservableObject {
+    @Published var coins = [Coin]()
 
-    private let getCoinsUseCase = GetCoinsListUseCase()
+//    private let getCoinsUseCase = GetCoinsListUseCase()
+    private let getCoinsUseCase = ObserveCoinsListUseCase()
 
-    init() {
+    override init() {
+        super.init()
         self.getCoins()
     }
 
     func getCoins() {
-        getCoinsUseCase.getCoinsList { response, err in
-            guard let coinsList = response?.coins else { return }
-            self.coins = coinsList
+        getCoinsUseCase.execute(self, args: KotlinUnit()) {
+            $0.onNext { list in
+                guard let coinsList = list?.list else { return }
+                self.coins = coinsList as [Coin]
+            }
+            $0.onError { error in
+                print(error)
+            }
         }
     }
 }

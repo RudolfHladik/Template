@@ -3,12 +3,12 @@ package com.rudolfhladik.kmm.template.data.model.response
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CoinsResponse(
+internal data class CoinsResponse(
     val coins: List<CoinResponse>,
 )
 
 @Serializable
-data class CoinResponse(
+internal data class CoinResponse(
     val id: String,
     val name: String,
     val icon: String,

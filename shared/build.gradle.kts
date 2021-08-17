@@ -15,17 +15,7 @@ sqldelight {
         packageName = "com.rudolfhladik.kmm.template.db"
     }
 }
-// Workaround for https://youtrack.jetbrains.com/issue/KT-43944
-//android {
-//    configurations {
-//        create("androidTestApi")
-//        create("androidTestDebugApi")
-//        create("androidTestReleaseApi")
-//        create("testApi")
-//        create("testDebugApi")
-//        create("testReleaseApi")
-//    }
-//}
+
 kotlin {
     android()
 
@@ -52,9 +42,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt") {
-                    isForce = true
-                }
+                implementation(libs.kotlinx.coroutinesMt)
                 // Serialization
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.kotlinx.serializationJson)
@@ -63,6 +51,8 @@ kotlin {
                 // SqlDelight
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.ext)
+                // Arkitekt
+                api("app.futured.arkitekt:km-usecases:0.1.1-SNAPSHOT")
             }
         }
         val commonTest by getting {
@@ -91,6 +81,8 @@ kotlin {
                 implementation(libs.ktor.client.ios)
                 // SqlDelight iOS driver
                 implementation(libs.sqldelight.ios)
+                // Arkitekt viewmodel
+                api("app.futured.arkitekt:km-viewmodel:0.1.2-SNAPSHOT")
             }
         }
         val iosTest by getting
