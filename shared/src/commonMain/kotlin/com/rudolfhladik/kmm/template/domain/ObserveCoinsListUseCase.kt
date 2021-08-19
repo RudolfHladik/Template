@@ -32,4 +32,3 @@ class ObserveCoinsListUseCase : FlowUseCase<Unit, ListWrapper<Coin>>() {
         coinStore.storeCoins(coinsResponse.coins)
     }
 }
-
