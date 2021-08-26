@@ -24,10 +24,18 @@ With the initKmm.kts script you can setup your own App with all the features fro
  6. run Android / iOS apps and enjoy
 
 ## Versions
- check actual versions in gradle versions catalog file at `Template/gradle/libs.versions.toml`
+ check actual versions in gradle versions [catalog](Template/gradle/libs.versions.toml)
  
 ## Requirements
   - Java JDK 11
   - Android Studio Arctic Fox 2020.3.1 or higher
   - Xcode 12.5.1 or higher
   - [kscript](https://github.com/holgerbrandl/kscript)
+
+## Contributors
+
+Current maintainer and main contributor is [Rudolf Hladík](https://github.com/RudolfHladik).
+
+## License
+
+KMM Template is available under the MIT license. See the [LICENSE](LICENSE) for more information.
