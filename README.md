@@ -4,14 +4,14 @@
 KMM Template is sample Kotlin Multiplatform app with basic features set up and aligned to MVVM architecture.
   
   Basic features includes:
-   - database with SQL Delight
-   - networking with KTOR
-   - serialization with kotlinx.serialization
-   - coroutines with multithreaded support
-   - usecases with Arkitekt km-usecases
-   - cocoapods integration
-   - iOS app ui with SwiftUI
-   - Android app ui with Jetpack Compose
+   - database with **SQL Delight**
+   - networking with **KTOR**
+   - serialization with **kotlinx.serialization**
+   - **coroutines** with multithreaded support
+   - usecases with **Arkitekt km-usecases**
+   - **cocoapods** integration
+   - iOS app ui with **SwiftUI**
+   - Android app ui with **Jetpack Compose**
    
 ## Installation
  1. clone this repo
