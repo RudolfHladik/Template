@@ -26,3 +26,4 @@ KMM Template is sample Kotlin Multiplatform app with basic features set up and a
   - Java JDK 11
   - Android Studio Arctic Fox 2020.3.1 or higher
   - Xcode 12.5.1 or higher
+  - [kscript](https://github.com/holgerbrandl/kscript)
