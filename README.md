@@ -21,6 +21,9 @@ KMM Template is sample Kotlin Multiplatform app with basic features set up and a
  4. follow the steps in terminal
  5. open newly created project with Android Studio with Kotlin multiplatform plugin installed
  6. run Android / iOS apps and enjoy
+
+## Versions
+ check actual versions in gradle versions catalog file at `Template/gradle/libs.versions.toml`
  
 ## Requirements
   - Java JDK 11
