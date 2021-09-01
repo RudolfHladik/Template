@@ -19,6 +19,8 @@ With the initKmm.kts script you can setup your own App with all the features fro
  2. switch to Template directory ( `cd Template`)
  3. execute initKmm.kts script with bash or kscript ( `bash initKmm.kts` / `kscript initKmm.kts` )
       executing with bash will download kscript first and then execute the script with kscript
+      - if you install kscript for the first time it may throw an error that the `kscript command not found` try restarting terminal
+      and execute `kscript initKmm.kts` again
  4. follow the steps in terminal
  5. open newly created project with Android Studio with Kotlin multiplatform plugin installed
  6. run Android / iOS apps and enjoy
