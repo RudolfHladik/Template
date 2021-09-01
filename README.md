@@ -2,7 +2,7 @@
 
 ## What is KMM Template
 KMM Template is sample Kotlin Multiplatform app with basic features set up and aligned to MVVM architecture.
-With the initKmm.kts script you can setup your own App with all the features from this Template.
+With the initKmm.kts script you can setup your own App with all the features from this Template. It will rename packages and application id accordingly.
   
   Basic features includes:
    - database with **SQL Delight**
