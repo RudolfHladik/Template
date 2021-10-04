@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.merge
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ObserveCoinsListUseCase : FlowUseCase<Unit, ListWrapper<Coin>>() {
-    private val coinStore: CoinStore = CoinStore(RestApiManager(), DatabaseManager())
+    private val coinStore: CoinStore = CoinStore(RestApiManager, DatabaseManager)
 
     init {
         freeze()

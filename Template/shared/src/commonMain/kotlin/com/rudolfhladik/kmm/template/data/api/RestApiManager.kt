@@ -12,7 +12,7 @@ import io.ktor.http.Url
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 
-internal class RestApiManager {
+internal object RestApiManager {
     private val httpClient = HttpClient()
 
     private val json = Json(Json) {

@@ -9,7 +9,7 @@ import com.rudolfhladik.kmm.template.data.model.ListWrapper
 import com.rudolfhladik.kmm.template.data.store.CoinStore
 
 class GetCoinsListUseCase : UseCase<Unit, ListWrapper<Coin>>() {
-    private val coinStore: CoinStore = CoinStore(RestApiManager(), DatabaseManager())
+    private val coinStore: CoinStore = CoinStore(RestApiManager, DatabaseManager)
 
     init {
         freeze()

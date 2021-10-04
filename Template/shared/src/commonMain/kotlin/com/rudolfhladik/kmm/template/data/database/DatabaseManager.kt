@@ -7,7 +7,7 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 
-internal class DatabaseManager {
+internal object DatabaseManager {
     private val db: CommonDatabase = CommonDatabase(createDriver())
 
     fun getAll(): Flow<List<Coin>> = db.coinEntityQueries
