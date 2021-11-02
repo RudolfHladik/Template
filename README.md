@@ -40,4 +40,4 @@ Current maintainer and main contributor is [Rudolf Hladík](https://github.com/R
 
 ## License
 
-KMM Template is available under the MIT license. See the [LICENSE](LICENSE) for more information.
+KMM Template is available under the MIT license. See the [LICENCE](LICENCE) for more information.
