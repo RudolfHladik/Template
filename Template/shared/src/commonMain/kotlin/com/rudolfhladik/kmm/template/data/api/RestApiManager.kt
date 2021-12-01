@@ -1,5 +1,6 @@
 package com.rudolfhladik.kmm.template.data.api
 
+import com.rudolfhladik.kmm.template.createHttpClient
 import com.rudolfhladik.kmm.template.data.Endpoint
 import io.ktor.client.HttpClient
 import io.ktor.client.request.header
@@ -13,7 +14,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 
 internal object RestApiManager {
-    private val httpClient = HttpClient()
+    private val httpClient = createHttpClient()
 
     private val json = Json(Json) {
         isLenient = true

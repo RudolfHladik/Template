@@ -17,10 +17,18 @@ buildscript {
 
 allprojects {
     repositories {
+        gradlePluginPortal()
         google()
+        mavenLocal()
         mavenCentral()
+
         maven {
             setUrl("https://oss.sonatype.org/content/repositories/snapshots/")
+        }
+
+        maven {
+            // KTOR MM
+            setUrl("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
         }
     }
 }
