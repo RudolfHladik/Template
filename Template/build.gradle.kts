@@ -19,7 +19,6 @@ allprojects {
     repositories {
         gradlePluginPortal()
         google()
-        mavenLocal()
         mavenCentral()
 
         maven {

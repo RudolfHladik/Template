@@ -61,7 +61,8 @@ kotlin {
 //                implementation("com.apollographql.apollo3:apollo-runtime:3.0.0-dev14")
 
                 // Arkitekt
-                api("app.futured.arkitekt:km-usecases:0.2.4-SNAPSHOT")
+                // with new MM support
+                api("app.futured.arkitekt:km-usecases:0.2.0-MM-SNAPSHOT")
             }
         }
         val commonTest by getting {
@@ -133,10 +134,10 @@ tasks.withType<KotlinCompile> {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 26
-        targetSdk = 30
+        targetSdk = 31
     }
 }
