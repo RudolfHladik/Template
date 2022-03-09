@@ -1,0 +1,30 @@
+query LaunchesList {
+    launches(after: null,pageSize: 20) {
+        launches {
+            id
+            isBooked
+        }
+    }
+}
+mutation BookTrip($launchId: ID!) {
+    bookTrips(launchIds: [$launchId]) {
+        message
+    }
+}
+
+mutation CancelTrip($id:ID!) {
+    cancelTrip(launchId: $id) {
+        message
+    }
+}
+
+mutation Login($email: String!) {
+    login(email: $email) {
+        token
+    }
+}
+
+subscription TripsBooked {
+    tripsBooked
+}
+
