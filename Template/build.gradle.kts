@@ -11,7 +11,7 @@ buildscript {
         classpath(libs.android.gradlePlugin)
         classpath(kotlin("serialization", version = libs.versions.kotlin.get()))
         classpath(libs.sqldelight.plugin)
-
+        classpath(libs.apollo.gradle)
     }
 }
 
