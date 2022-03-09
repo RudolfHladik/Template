@@ -7,6 +7,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    id("com.apollographql.apollo3")
 }
 
 version = "1.0"
@@ -14,6 +15,11 @@ sqldelight {
     database("CommonDatabase") {
         packageName = "com.rudolfhladik.kmm.template.db"
     }
+}
+
+apollo {
+    mapScalar("ID", "kotlin.String")
+    packageName.set("com.rudolfhladik.kmm.template")
 }
 
 kotlin {
@@ -51,6 +57,8 @@ kotlin {
                 // SqlDelight
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.ext)
+                // Apollo
+                implementation(libs.apollo.runtime)
                 // Arkitekt
                 api("app.futured.arkitekt:km-usecases:0.1.1-SNAPSHOT")
             }

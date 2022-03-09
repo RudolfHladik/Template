@@ -1,6 +1,7 @@
 package com.rudolfhladik.kmm.template.data.database
 
 import com.rudolfhladik.kmm.template.Coin
+import com.rudolfhladik.kmm.template.Token
 import com.rudolfhladik.kmm.template.createDriver
 import com.rudolfhladik.kmm.template.db.CommonDatabase
 import com.squareup.sqldelight.runtime.coroutines.asFlow
@@ -22,4 +23,12 @@ internal object DatabaseManager {
     }
 
     suspend fun deleteAll() = db.coinEntityQueries.deleteAll()
+
+    suspend fun insertToken(token: String) {
+        db.tokenQueries.insertToken("1", token)
+    }
+
+    suspend fun getToken(): Token? = db.tokenQueries.selectAll().executeAsOneOrNull()
+
+    suspend fun deleteToken() = db.tokenQueries.deleteAll()
 }
