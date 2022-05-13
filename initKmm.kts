@@ -19,7 +19,7 @@ val (appName, packageName) = getAppNameAndPackage()
 renamePackagesInAndroidApp(packageName)
 renamePackagesInShared(packageName)
 // rename rootProject.name in settings.gradle.kts
-renameTextInPath("Template/settings.gradle.kts", "Template", appName)
+renameTextInPath("template-kit/settings.gradle.kts", "template-kit", appName)
 renameRootFolder(appName)
 println("KMM App: $appName created!")
 
@@ -28,18 +28,18 @@ println("KMM App: $appName created!")
 // region functions
 
 fun renameRootFolder(appName: String) {
-    moveFilesToPath("Template", appName)
+    moveFilesToPath("template-kit", appName)
 }
 
 fun renamePackagesInAndroidApp(packageName: String) {
     // move androidApp to new package
     val packagePath = packageName.replace('.', '/')
-    moveFilesToPath("Template/androidApp/src/main/java/com/rudolfhladik/kmm/template/android", "Template/androidApp/src/main/kotlin/${packagePath}/android")
-    val androidAppJavaFolder = File("Template/androidApp/src/main/java")
+    moveFilesToPath("template-kit/androidApp/src/main/java/com/rudolfhladik/kmm/template/android", "template-kit/androidApp/src/main/kotlin/${packagePath}/android")
+    val androidAppJavaFolder = File("template-kit/androidApp/src/main/java")
     androidAppJavaFolder.deleteRecursively()
 
     // rename package and imports
-    renameTextInFilePath("Template/androidApp/","com.rudolfhladik.kmm.template", packageName)
+    renameTextInFilePath("template-kit/androidApp/","com.rudolfhladik.kmm.template", packageName)
 }
 
 fun renamePackagesInShared(packageName: String) {
@@ -57,7 +57,7 @@ fun renamePackagesInShared(packageName: String) {
     targets.forEach {
         val sourcePackage = getSourceSharedPackageForTarget(it)
         moveFilesToPath(sourcePackage, temp)
-        val sourceFile = File("Template/shared/src/${it}/kotlin/com")
+        val sourceFile = File("template-kit/shared/src/${it}/kotlin/com")
         sourceFile.deleteRecursively()
         val targetPackage = getNewSharedPackageForTarget(it, packagePath)
         moveFilesToPath(temp, targetPackage)
@@ -65,17 +65,17 @@ fun renamePackagesInShared(packageName: String) {
         tempFolder.deleteRecursively()
     }
     // move SQL entity to correct package
-    val sqlSource = "Template/shared/src/commonMain/sqldelight/com/rudolfhladik/kmm/template"
+    val sqlSource = "template-kit/shared/src/commonMain/sqldelight/com/rudolfhladik/kmm/template"
     moveFilesToPath(sqlSource, temp)
-    val sourceFile = File("Template/shared/src/commonMain/sqldelight/com")
+    val sourceFile = File("template-kit/shared/src/commonMain/sqldelight/com")
     sourceFile.deleteRecursively()
-    val targetPackage = "Template/shared/src/commonMain/sqldelight/${packagePath}"
+    val targetPackage = "template-kit/shared/src/commonMain/sqldelight/${packagePath}"
     moveFilesToPath(temp, targetPackage)
     val tempFolder = File(temp)
     tempFolder.deleteRecursively()
 
 //    renamePackagesInSharedClasses(packageName)
-    renameTextInFilePath("Template/shared/", "com.rudolfhladik.kmm.template", packageName)
+    renameTextInFilePath("template-kit/shared/", "com.rudolfhladik.kmm.template", packageName)
 }
 
 fun renameTextInFilePath(path: String, oldText: String, newText: String) {
@@ -88,11 +88,11 @@ fun renameTextInFilePath(path: String, oldText: String, newText: String) {
 }
 
 fun getSourceSharedPackageForTarget(target: String): String {
-    return "Template/shared/src/${target}/kotlin/com/rudolfhladik/kmm/template"
+    return "template-kit/shared/src/${target}/kotlin/com/rudolfhladik/kmm/template"
 }
 
 fun getNewSharedPackageForTarget(target: String, packagePath: String): String {
-    return "Template/shared/src/${target}/kotlin/${packagePath}"
+    return "template-kit/shared/src/${target}/kotlin/${packagePath}"
 }
 
 fun renameTextInPath(path: String, oldText: String, newText: String) {
